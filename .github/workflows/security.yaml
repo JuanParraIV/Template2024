@@ -1,0 +1,45 @@
+name: Security
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main, develop, release-*]
+jobs:
+  Security-And-Code-Scanning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: nodejsscan scan
+        uses: ajinabraham/njsscan-action@master
+        with:
+          args: '.'
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn install 
+      
+      - name: Code Analysis
+        run: yarn lint:check
+
+      - name: Security Scan
+        run: yarn audit
+
+      - name: Notify Team
+        if: failure()
+        run: echo 'Security scan failed. Please check the workflow logs.'
+
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
