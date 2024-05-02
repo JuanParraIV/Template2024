@@ -8,6 +8,9 @@ on:
 jobs:
   Security-And-Code-Scanning:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.19.1]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
