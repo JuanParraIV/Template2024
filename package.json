@@ -45,7 +45,7 @@
 		"react-scripts": "^4.0.3",
 		"react-stickynode": "^4.1.0",
 		"react-time-ago": "^7.2.1",
-		"sharp-cli": "^2.1.1",
+		"sharp-cli": "^4.2.0",
 		"tailwind-merge": "2.2.2",
 		"tailwindcss-animate": "1.0.7",
 		"vite-plugin-env": "^1.0.1",
