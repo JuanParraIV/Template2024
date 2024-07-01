@@ -33,7 +33,7 @@
 		"ethers": "^5.7.2",
 		"formik": "^2.2.9",
 		"javascript-time-ago": "^2.5.9",
-		"magic-sdk": "7.0.0",
+		"magic-sdk": "28.0.7",
 		"moralis": "2.22.2",
 		"moralis-v1": "1.13.0",
 		"path": "^0.12.7",
